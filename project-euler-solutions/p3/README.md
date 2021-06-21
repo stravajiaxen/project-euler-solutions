@@ -16,3 +16,6 @@ I just didn't believe I had it right.
 Another one where a bit of math cleverness helps. If you start iterating through (prime) numbers
 and divide 600851475143 each time by the number, it will lower the max number each time. You can stop
 when your current prime number is <= the current max number.
+
+Luckily I was using python. The number I've lovingly called `the_big_kahuna` is bigger than 2^31-1 so
+in other languages (Java) I might have to mess with some funky int vs. long (vs. BigInteger?) rules
