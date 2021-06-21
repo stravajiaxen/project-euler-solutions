@@ -19,8 +19,10 @@ This code attempts to solve Project Euler (projecteuler.net) Problem #{problem_n
 {description}
 """
 
+
 def main():
     pass
+    
     
 if __name__ == "__main__":
     main()
@@ -76,5 +78,5 @@ def problem_num(num, write=False):
         return text
 
 if __name__ == '__main__':
-    readme = problem_num(6, write=True)
+    readme = problem_num(7, write=True)
     print(readme)
