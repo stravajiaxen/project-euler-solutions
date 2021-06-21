@@ -5,17 +5,33 @@
 
 import requests
 from bs4 import BeautifulSoup
+import shutil
+import os
+
+solution_out = \
+'''
+"""
+Copyright Matt DeMartino (Stravajiaxen)
+Licensed under MIT License -- do whatever you want with this, just don't sue me!
+
+This code attempts to solve Project Euler (projecteuler.net) Problem #{problem_num} {problem_title}
+
+{description}
+"""
+'''
 
 problem_out = \
 """
 # Euler {problem_num}: {problem_title}
 
 ## Description
-
 {description}
+
+## Solution
+*Fill me in!*
 """
 
-def problem_num(num):
+def problem_num(num, write=False):
     # Make a BeautifulSoup from the contents of project euler's page
     url_template = "https://projecteuler.net/problem={num}"
     url = url_template.format(num=num)
@@ -32,9 +48,27 @@ def problem_num(num):
         descriptions.append(paragraph.get_text())
     description = "\n\n".join(descriptions)
 
-    return problem_out.format(problem_num=num, problem_title=problem_title,
+    text = problem_out.format(problem_num=num, problem_title=problem_title,
                               description=description)
 
+    if not write:
+        print(solution_out.format(problem_num=num, problem_title=problem_title,
+                                        description=description))
+        return text
+    else:
+        dir_loc = os.path.join(os.path.dirname(__file__), "..", "p" + str(num))
+        print(dir_loc)
+        os.mkdir(dir_loc)
+
+        with open(os.path.join(dir_loc, "README.md"), 'w') as f:
+            f.write(text)
+
+        with open(os.path.join(dir_loc, "euler" + str(num) + ".py"), 'w') as f:
+            f.write(solution_out.format(problem_num=num, problem_title=problem_title,
+                                        description=description))
+
+        return text
+
 if __name__ == '__main__':
-    readme = problem_num(1)
+    readme = problem_num(1, write=False)
     print(readme)
