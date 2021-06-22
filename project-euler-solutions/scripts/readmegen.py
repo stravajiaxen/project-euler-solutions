@@ -18,6 +18,7 @@ This code attempts to solve Project Euler (projecteuler.net) Problem #{problem_n
 
 {description}
 """
+import time
 
 
 def main():
@@ -25,7 +26,10 @@ def main():
     
     
 if __name__ == "__main__":
+    start_time = time.time()
     main()
+    elapsed_time = time.time() - start_time
+    print(f"Elapsed Time: {elapsed_time}")
 '''
 
 problem_out = \
@@ -77,6 +81,7 @@ def problem_num(num, write=False):
 
         return text
 
+
 if __name__ == '__main__':
-    readme = problem_num(9, write=True)
+    readme = problem_num(10, write=True)
     print(readme)
