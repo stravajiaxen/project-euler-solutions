@@ -9,7 +9,7 @@ from projecteuler.net.
 
 ## A note about code quality
 
-Project Euler is a series of math challenges written with the intention
+[Project Euler](https://projecteuler.net/about) is a series of math challenges written with the intention
 that a computer would need to be used to solve them. Their nature is such that
 each problem should take < 100 lines of code to complete. The problems are often
 pretty ugly and require a bunch of if statements. The goal of each is to complete the task.
