@@ -84,5 +84,5 @@ def problem_num(num, write=False):
 
 
 if __name__ == '__main__':
-    readme = problem_num(67, write=True)
+    readme = problem_num(19, write=True)
     print(readme)
