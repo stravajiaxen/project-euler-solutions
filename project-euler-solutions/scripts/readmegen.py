@@ -29,7 +29,7 @@ if __name__ == "__main__":
     start_time = time.time()
     main()
     elapsed_time = time.time() - start_time
-    print(f"Elapsed Time: {elapsed_time}")
+    print("Elapsed Time: ", elapsed_time)
 '''
 
 problem_out = \
@@ -83,5 +83,5 @@ def problem_num(num, write=False):
 
 
 if __name__ == '__main__':
-    readme = problem_num(10, write=True)
+    readme = problem_num(11, write=True)
     print(readme)
