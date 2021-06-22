@@ -73,15 +73,16 @@ def problem_num(num, write=False):
         os.mkdir(dir_loc)
 
         with open(os.path.join(dir_loc, "README.md"), 'w') as f:
-            f.write(text)
+            f.write(text.encode('ascii', 'ignore').decode())
 
         with open(os.path.join(dir_loc, "euler" + str(num) + ".py"), 'w') as f:
             f.write(solution_out.format(problem_num=num, problem_title=problem_title,
-                                        description=description))
+                                        description=description
+                                        ).encode('ascii', 'ignore').decode())
 
         return text
 
 
 if __name__ == '__main__':
-    readme = problem_num(13, write=True)
+    readme = problem_num(14, write=True)
     print(readme)
