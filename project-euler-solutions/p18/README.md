@@ -31,7 +31,7 @@ Find the maximum total from top to bottom of the triangle below:
 NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
 ## Solution
-*Still To be solved...*
+*1074*
 
 I intend to solve this and Problem 67 at once. This appears to be possible to do with a path-finding algorithm (e.g. dijkstra's algorithm or A*)
 
@@ -39,3 +39,5 @@ This problem is a bit unique in that I want to *maximize* the value at the end r
 minimize it, but I can turn it into a minimization problem by subtracting 100 - `num` for each `num` in the list and minimizing
 the path to the bottom if those are the weights of edges on a graph. The path that minimizes
 that number will be the one that maximizes the possible amount.
+
+(Finished this! The above worked just perfectly.)

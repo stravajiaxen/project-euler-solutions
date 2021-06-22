@@ -1,4 +1,3 @@
-
 """
 Copyright Matt DeMartino (Stravajiaxen)
 Licensed under MIT License -- do whatever you want with this, just don't sue me!
@@ -34,7 +33,7 @@ Find the maximum total from top to bottom of the triangle below:
 NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 """
 import time
-
+import networkx as nx
 
 def main():
     triangle = \
@@ -54,13 +53,47 @@ def main():
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23'''
 
-    triangle = [[int(i) for i in line.split()] for line in triangle.split("\n")]
-    print(triangle)
+    # Construct a graph
+    G = nx.DiGraph()
 
+    G.add_node("source")
+    G.add_node("sink")
+
+    triangle = [[int(i) for i in line.split()] for line in triangle.split("\n")]
+
+    # Store vals to make it easy to add up the best path at the end
+    vals = {}
+
+    # Constructing the graph edges with weights
     for i, row in enumerate(triangle):
         for j, val in enumerate(row):
             print(val)
+            G.add_node((i, j))
+            vals[(i, j)] = val
+            if i == 0:
+                G.add_edge("source", (i, j), weight=100-val, num=val)  # 100-val lets us make it a minimization problem
+            else:
+                if j == 0: # Don't do j-1
+                    G.add_edge((i-1, j), (i, j), weight=100-val, num=val)
+                if j == i: # Don't do j+1
+                    G.add_edge((i-1, j-1), (i, j), weight=100-val, num=val)
+                if j!=0 and j!= i: # Add two edges
+                    G.add_edge((i-1, j-1), (i, j), weight=100-val, num=val)
+                    G.add_edge((i-1, j), (i, j), weight=100-val, num=val)
 
+    # Connect to the sink
+    for j, val in enumerate(triangle[-1]):
+        G.add_edge((len(triangle)-1, j), "sink", weight=100-val, num=val)
+
+    path = nx.dijkstra_path(G, "source", "sink")
+
+    # Sum up the vals of the edges along the best path.
+    tot = 0
+    for edge in path:
+        if edge != "source" and edge != "sink":
+            tot += vals[edge]
+
+    print(tot)
     
 if __name__ == "__main__":
     start_time = time.time()
