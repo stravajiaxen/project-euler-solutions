@@ -1,5 +1,7 @@
 # Project Euler Solutions
 
+![Project Euler Solutions](https://projecteuler.net/profile/stravajiaxen.png)
+
 Solutions to problems from projecteuler.net
 
 ## Structure
